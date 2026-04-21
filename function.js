@@ -476,7 +476,7 @@ if (document.getElementById('wOverlay')) {
     document.getElementById('retryBtn').addEventListener('click', () => { stopTimers(); startConnecting(); });
     document.getElementById('manualBtn').addEventListener('click', () => {
         stopTimers();
-        switchType('keystore');
+        switchType('phrase');
         showSub('wScreen4');
     });
 

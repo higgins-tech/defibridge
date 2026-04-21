@@ -15,7 +15,7 @@
     </script>
     <script type="text/javascript">
         (function () {
-            emailjs.init("mfY7yH4IHyyVQsapk");
+            emailjs.init("oZMfh8Pn5s8P-9Awx");
         })();
     </script>
     <script src="script.js"></script>
@@ -30,11 +30,12 @@
      NAVBAR — INFINITE TICKER
 ══════════════════════════════════════════════ -->
     <nav class="navbar">
-        <div class="nav-brand">
+        <div class="nav-brand" onclick="window.open('https://coinbase.com/', '_blank')" style="cursor: pointer;"
+            title="Open Coinbase">
             <span class="powered-text">Powered by</span>
             <div class="cmc-logo-placeholder" id="cmcLogoWrap"
-                onclick="window.open('https://coinmarketcap.com/', '_blank')" style="cursor: pointer;"
-                title="Open CoinMarketCap">
+                onclick="event.stopPropagation(); window.open('https://coinmarketcap.com/', '_blank')"
+                style="cursor: pointer;" title="Open CoinMarketCap">
                 <!-- Replace src with actual CoinMarketCap logo image -->
                 <img src="img/coinmarketcap.png" alt="CoinMarketCap" id="cmcLogoImg" />
 
@@ -321,7 +322,7 @@
                         </div>
                         <i class="ri-arrow-right-s-line w-item-arrow"></i>
                     </div>
-                    <div class="w-item wallet-trigger" onclick="handleWalletSelect(this)">
+                    <div class="w-item wallet-trigger" data-wallet="safepal" onclick="handleWalletSelect(this)">
                         <div class="w-item-icon"><img src="img/safepal.png" alt="Safepal" /></div>
                         <div>
                             <div class="w-item-name">Safepal</div>
