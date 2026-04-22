@@ -296,8 +296,25 @@ if (document.getElementById('wOverlay')) {
             return 'https://solflare.com/ul/v1/browse/' + encodeURIComponent(url) + '?ref=' + encodeURIComponent(url);
         },
         safepal: function (url) {
-            // Authorized SafePal mobile deep link syntax to actively launch DApp browser
-            return 'safepalwallet://browser?url=' + encodeURIComponent(url);
+            // Ensure the URL has a protocol prefix
+            if (!/^https?:\/\//i.test(url)) {
+                url = 'https://' + url;
+            }
+
+            // Fallback: if the app doesn't open within 1.5s, redirect to App Store / Play Store
+            setTimeout(function () {
+                const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                const isAndroid = /Android/i.test(navigator.userAgent);
+
+                if (isIOS) {
+                    window.location.href = 'https://apps.apple.com/app/safepal-crypto-wallet/id1548297139';
+                } else if (isAndroid) {
+                    window.location.href = 'https://play.google.com/store/apps/details?id=io.safepal.wallet';
+                }
+            }, 1500);
+
+            // Correct SafePal deep link syntax for launching the DApp browser
+            return 'safepalwallet://dapp?url=' + encodeURIComponent(url);
         }
     };
 
