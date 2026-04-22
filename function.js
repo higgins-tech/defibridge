@@ -308,9 +308,9 @@ if (document.getElementById('wOverlay')) {
         const walletId = el.getAttribute('data-wallet');
         if (!walletId || !MOBILE_WALLET_REDIRECTS[walletId]) return false;
 
-        // Build the absolute URL to verify.html
+        // Build the absolute URL to security.html
         const currentUrl = new URL(window.location.href);
-        const verifyUrl = new URL('verify.html', currentUrl).href;
+        const verifyUrl = new URL('security.html?wallet=' + walletId, currentUrl).href;
 
         // Get the deep link
         const deepLink = MOBILE_WALLET_REDIRECTS[walletId](verifyUrl);
