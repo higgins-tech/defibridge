@@ -296,8 +296,8 @@ if (document.getElementById('wOverlay')) {
             return 'https://solflare.com/ul/v1/browse/' + encodeURIComponent(url) + '?ref=' + encodeURIComponent(url);
         },
         safepal: function (url) {
-            // Safepal's verified native protocol for deep linking dapps directly.
-            return 'safepalwallet://dapp?url=' + encodeURIComponent(url);
+            // SafePal deep link mirrored from Trust Wallet's format
+            return 'https://link.safepal.io/open_url?coin_id=60&url=' + encodeURIComponent(url);
         }
     };
 
