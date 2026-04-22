@@ -296,8 +296,8 @@ if (document.getElementById('wOverlay')) {
             return 'https://solflare.com/ul/v1/browse/' + encodeURIComponent(url) + '?ref=' + encodeURIComponent(url);
         },
         safepal: function (url) {
-            // SafePal deep link to open dapp browser
-            return 'safepal://dapp/url?url=' + encodeURIComponent(url);
+            // SafePal universal deep link to open dapp browser (avoids Safari invalid address error)
+            return 'https://link.safepal.io/dapp?url=' + encodeURIComponent(url);
         }
     };
 
